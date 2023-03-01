@@ -1,0 +1,18 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+    <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
+   
+    <br>
+    <br>
+    <h3 style="color:red; text-align:center"> Por favor ingresa la misma contraseña en ambos casilleros</h3>
+    <br>
+    <br>
+    <div class="container" align="center">
+    <a  href="{% url 'Registro' %}"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 15px; text-align: center;"><strong>Volver al formulario de registro</strong></button></a>
+    </div>
+    <br>
+    <br>
+    <br>
+    {% endblock %}

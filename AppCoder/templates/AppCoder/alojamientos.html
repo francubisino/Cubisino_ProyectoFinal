@@ -14,24 +14,26 @@
     <div   align="center" width="1000px" height="700px">
     
     <br>
-    <form action="buscar_alojamiento/" method="GET" id="form1" style="width:1000px; height:700px; align-content:center; align-items: center; font-family:Georgia, 'Times New Roman', Times, serif; font-size: 15px;">
+    <form action="buscar_alojamiento/" method="GET" id="form1" style="width:1000px; height:700px; font-family:Arial, Helvetica, sans-serif; font-size: 16px; ">
         
       <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
       <br>
-        <div  class="input-group">
-        <strong><p>Ubicación (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="text" name="ubicacion" style="height: 30px;"  required>
+      <br>
+        <div class="input-group" style="margin-left:250px;">
+          
+        <p>Ubicación (*):</p>&nbsp;&nbsp;&nbsp;<input type="text" name="ubicacion" style="height: 30px;"  required>
         </div>
         <br>
-       <div  class="input-group">
-        <strong><p>Cantidad de habitaciones (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="habitaciones" style="height: 30px;" required>
+       <div  class="input-group" style="margin-left:250px;">
+        <p>Cantidad de habitaciones (*):</p>&nbsp;&nbsp;&nbsp;<input type="number" name="habitaciones" style="height: 30px;" required>
         </div>
         <br>
-        <div  class="input-group">
-        <strong><p>Precio máximo por día:</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="precio_dia" style="height: 30px;">
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Precio máximo por día:</p>&nbsp;&nbsp;&nbsp;<input type="number" name="precio_dia" style="height: 30px;">
         </div>
         <br>
-        <div  class="input-group">
-        <label for="tipo"><strong>Tipo:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <div  class="input-group" style="margin-left:250px;">
+        <label for="tipo">Tipo:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <select name="tipo" id="tipo">
             <option>Todos</option>
             <option>Casa</option>
@@ -42,47 +44,48 @@
         </select>
        </div>
        <br>
-        <div  class="input-group">
-        <strong><p>Baños:</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="baños" style="height: 30px;">
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Baños:</p>&nbsp;&nbsp;&nbsp;<input type="number" name="baños" style="height: 30px;">
        </div>
        <br>
-        <div  class="input-group">
-        <label for="mascotas"><strong>Mascotas:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <div  class="input-group" style="margin-left:250px;">
+        <label for="mascotas">Mascotas:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <select name="mascotas" id="mascotas">
             <option>Sí</option>
             <option>No</option>
         </select>
         </div>
         <br>
-        <div  class="input-group">
-        <label for="balcon"><strong>Balcón:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <div  class="input-group" style="margin-left:250px;">
+        <label for="balcon">Balcón:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <select name="balcon" id="balcon">
             <option>Sí</option>
             <option>No</option>
         </select>
        </div>
        <br>
-        <div  class="input-group">
-        <label for="pileta"><strong>Pileta:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <div  class="input-group" style="margin-left:250px;">
+        <label for="pileta">Pileta:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
         <select name="pileta" id="pileta">
             <option>Sí</option>
             <option>No</option>
         </select>
        </div>
        <br>
-        <div  class="input-group">
-        <strong><p>Cantidad huéspedes (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="max_personas" style="height: 30px;" required>
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Cantidad huéspedes (*):</p>&nbsp;&nbsp;&nbsp;<input type="number" name="max_personas" style="height: 30px;" required>
         </div>
         <br>
-        <input type="submit" value="Buscá tu alojamiento">
+        <input type="submit"  class="btn btn-success btn-lg" value="Buscá tu alojamiento">
         <br>
         <br>
-        <strong><p align="left">(*): campos obligatorios</p></strong>
+        <p align="left">(*): campos obligatorios</p>
         <br>
         </div> 
            
     </form>
     </div>
+    <br>
     <br>
    
 

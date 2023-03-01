@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppCoder.models import *
 from AppCoder.forms import *
 from django.db.models import Q
+from datetime import datetime
 # Create your views here.
 
 def inicio(request):
@@ -15,7 +16,27 @@ def inicio_sesion(request):
     return render(request,'AppCoder/inicio_sesion.html')
 
 def registro(request):
-    return render(request,'AppCoder/registro.html')
+    mis_usuarios= usuarios.objects.all()
+    if request.method == 'POST':
+       register_form = RegistrarUsuario(request.POST)
+       if register_form.is_valid():
+           try:
+                success = register_form.registrar_usuario()
+           except:
+                return render(request, 'AppCoder/registro_error.html')        
+           return render(request, 'AppCoder/registro_correcto.html')
+    else:
+            #Muestra nuestro form
+        register_form = RegistrarUsuario()
+        return render(request, 'AppCoder/registro.html',
+                        {'register_form': register_form,
+                        'usuarios': mis_usuarios})
+ 
+def registro_correcto(request):
+    return render(request,'AppCoder/registro_correcto.html')
+
+def registro_error(request):
+    return render(request,'AppCoder/registro_error.html')
 
 def alojamientos(request):
     return render(request,'AppCoder/alojamientos.html')

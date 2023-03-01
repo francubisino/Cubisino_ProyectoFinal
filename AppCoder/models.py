@@ -13,18 +13,18 @@ class Autos(models.Model):
     seguro=models.BooleanField(default=False)
 
 class Alojamientos(models.Model):
-    ubicacion=models.CharField(max_length=30)
+    ubicacion=models.CharField(max_length=30, default='NULL')
     precio_dia=models.IntegerField(null=True, blank=True)
     habitaciones=models.IntegerField()
-    tipo=models.CharField(max_length=30)
+    tipo=models.CharField(max_length=30, default='NULL')
     baños=models.IntegerField()
     balcon=models.BooleanField(default=False)
     pileta=models.BooleanField(default=False)
     mascotas=models.BooleanField(null=False, blank=False)
     max_personas=models.IntegerField()
-    titulo=models.CharField(max_length=100)
+    titulo=models.CharField(max_length=100, default='NULL')
     img_alojamiento=models.ImageField(null=True, blank=True, upload_to='img/')
-    descripcion=models.CharField(max_length=200)
+    descripcion=models.CharField(max_length=200, default='NULL')
 
 class Paquetes(models.Model):
     paq_ubicacion=models.CharField(max_length=30)
@@ -47,3 +47,11 @@ class Consultas(models.Model):
     email=models.EmailField()    
     consulta=models.CharField(max_length=200)
 
+class usuarios(models.Model):
+    nombre=models.CharField(max_length=15)
+    telefono=models.CharField(max_length=15)
+    fecha_de_nacimiento=models.DateField()
+    email=models.EmailField(max_length=245)
+    username=models.CharField(max_length=245, default='NULL')
+    password1=models.CharField(max_length=8, default='NULL')
+    password2=models.CharField(max_length=8, default='NULL')

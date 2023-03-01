@@ -13,13 +13,17 @@ urlpatterns = [
     path('sobre_mi/', views.sobre_mi, name="Sobre_mi"),
     path('inicio_logueado/', views.inicio_logueado, name="Inicio_logueado"),
     path('inicio_sesion/', views.inicio_sesion, name="Inicio_sesion"),
-    path('registro/', views.registro, name="Registro"),
+    #path('registro/', views.registro, name="Registro"),
     
     #Paths de busquedas
     path('alojamientos/buscar_alojamiento/',views.buscar_alojamiento),
     path('autos/buscar_auto/',views.buscar_auto),
     path('paquetes/buscar_paquete/',views.buscar_paquete),
 
+    #Paths usuarios
+    path('registro/',views.registro, name='Registro'),
+    path('registro_correcto/',views.registro_correcto),
+    path('registro_error/',views.registro_error),
     
     #path('buscar_alojamiento/', views.buscar_alojamiento, name="Alojamientos"),
     #path('',views.busqueda_alojamientos, name="busqueda_alojamientos"),
