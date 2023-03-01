@@ -1,0 +1,39 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+
+&nbsp;&nbsp;<p>Los paquetes disponibles en base a las características seleccionadas son:</p>
+
+{% if articulos %}  
+
+    {% for articulo in articulos %}
+
+        <ul>
+            <li><strong>Ubicación:</strong>&nbsp;&nbsp;{{articulo.paq_ubicacion}}</li>
+            <li><strong>Precio alojamiento (diario):</strong>&nbsp;&nbsp;{{articulo.paq_precio_aloja_dia}}</li>
+            <li><strong>Cantidad habitaciones:</strong>&nbsp;&nbsp;{{articulo.paq_habitaciones}}</li>
+            <li><strong>Cantidad baños:</strong>&nbsp;&nbsp;{{articulo.paq_baños}}</li>
+            <li><strong>Balcón:</strong>&nbsp;&nbsp;{{articulo.paq_balcon}}</li>
+            <li><strong>Pileta:</strong>&nbsp;&nbsp;{{articulo.paq_pileta}}</li>
+            <li><strong>Apto mascotas:</strong>&nbsp;&nbsp;{{articulo.paq_mascotas}}</li>
+            <li><strong>Máx. huéspedes:</strong>&nbsp;&nbsp;{{articulo.paq_max_personas}}</li>
+             <li><strong>Interesa:</strong>&nbsp;&nbsp;{{articulo.paq_interesa}}</li>
+            <li><strong>Marca del auto:</strong>&nbsp;&nbsp;{{articulo.paq_marca}}</li>
+            <li><strong>Modelo del auto:</strong>&nbsp;&nbsp;{{articulo.paq_modelo}}</li>
+            <li><strong>Precio auto (diario):</strong>&nbsp;&nbsp;{{articulo.paq_precio_auto_dia}}</li>
+            <li><strong>Seguro:</strong>&nbsp;&nbsp;{{articulo.paq_seguro}}</li>
+        </ul>
+
+             
+    {% endfor %}
+    
+
+{% else %}
+    
+    <p>No existen autos disponibles con esas características</p>
+
+{% endif %}
+
+
+{% endblock %}

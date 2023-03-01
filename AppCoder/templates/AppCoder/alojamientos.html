@@ -1,0 +1,206 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+
+    <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
+    <br><br>
+
+    <div style="position: relative; align-content: center; align-items: center;">
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Alojamientos</h1>
+     <br>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Contanos que estás buscando y encontraremos las mejores opciones para vos</h4>
+  
+    <div   align="center" width="1000px" height="700px">
+    
+    <br>
+    <form action="buscar_alojamiento/" method="GET" id="form1" style="width:1000px; height:700px; align-content:center; align-items: center; font-family:Georgia, 'Times New Roman', Times, serif; font-size: 15px;">
+        
+      <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
+      <br>
+        <div  class="input-group">
+        <strong><p>Ubicación (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="text" name="ubicacion" style="height: 30px;"  required>
+        </div>
+        <br>
+       <div  class="input-group">
+        <strong><p>Cantidad de habitaciones (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="habitaciones" style="height: 30px;" required>
+        </div>
+        <br>
+        <div  class="input-group">
+        <strong><p>Precio máximo por día:</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="precio_dia" style="height: 30px;">
+        </div>
+        <br>
+        <div  class="input-group">
+        <label for="tipo"><strong>Tipo:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <select name="tipo" id="tipo">
+            <option>Todos</option>
+            <option>Casa</option>
+            <option>Contenedores</option>
+            <option>Mansión</option>
+            <option>Casa-Quinta</option>
+            <option>Departamento</option>
+        </select>
+       </div>
+       <br>
+        <div  class="input-group">
+        <strong><p>Baños:</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="baños" style="height: 30px;">
+       </div>
+       <br>
+        <div  class="input-group">
+        <label for="mascotas"><strong>Mascotas:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <select name="mascotas" id="mascotas">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+        </div>
+        <br>
+        <div  class="input-group">
+        <label for="balcon"><strong>Balcón:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <select name="balcon" id="balcon">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+       </div>
+       <br>
+        <div  class="input-group">
+        <label for="pileta"><strong>Pileta:&nbsp;&nbsp;</strong>&nbsp;&nbsp;&nbsp;</label>
+        <select name="pileta" id="pileta">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+       </div>
+       <br>
+        <div  class="input-group">
+        <strong><p>Cantidad huéspedes (*):</p></strong>&nbsp;&nbsp;&nbsp;<input type="number" name="max_personas" style="height: 30px;" required>
+        </div>
+        <br>
+        <input type="submit" value="Buscá tu alojamiento">
+        <br>
+        <br>
+        <strong><p align="left">(*): campos obligatorios</p></strong>
+        <br>
+        </div> 
+           
+    </form>
+    </div>
+    <br>
+   
+
+   <div id="checkbox-value"></div>
+  </div>
+
+   <script type="text/javascript">
+
+$('#checkbox-value').text($('#checkbox1').val());
+
+$("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'True');
+  } else {
+    $(this).attr('value', 'False');
+  }
+  
+  $('#checkbox-value').text($('#checkbox1').val());
+});
+</script>
+
+
+
+    {% endblock %}
+
+<!--https://stackoverflow.com/questions/37073010/checkbox-value-true-false-->
+<script type="text/javascript">
+
+$('#checkbox-value').text($('#checkbox1').val());
+
+$("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'True');
+  } else {
+    $(this).attr('value', 'False');
+  }
+  
+  $('#checkbox-value').text($('#checkbox1').val());
+});
+</script>
+
+
+
+
+<!--<label for="balcon"><strong>Balcón:&nbsp;&nbsp;</strong></label>
+        <select name="balcon" id="balcon">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+        <br><br>
+        <label for="pileta"><strong>Pileta:&nbsp;&nbsp;</strong></label>
+        <select name="pileta" id="pileta">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+
+<label for="mascotas"><strong>Apto mascotas:&nbsp;&nbsp;</strong></label>
+        <select name="mascotas" id="mascotas">
+        <option>Sí</option>
+            <option>No</option>
+        </select>
+    -->
+
+
+<!--BACKUP -- PEGAR ESTE
+     &nbsp;&nbsp;<p><strong>Ingresa el país donde desarrollas tus actividades:</strong></p>
+    <br>
+    <div>
+    <form action="buscar_alojamiento/" method="GET">
+        <div>
+        <strong><p>Ubicación (*):</p></strong><input type="text" name="ubicacion">
+        <br><br>
+        <strong><p>Cantidad de habitaciones:</p></strong><input type="text" name="habitaciones">
+        <br><br>
+        <strong><p>Precio máximo por día:</p></strong><input type="number" name="precio_dia">
+        <br><br>
+        <label for="tipo"><strong>Tipo:&nbsp;&nbsp;</strong></label>
+        <select name="tipo" id="tipo">
+            <option>Casa</option>
+            <option>Contenedores</option>
+            <option>Mansión</option>
+            <option>Casa-Quinta</option>
+            <option>Departamento</option>
+        </select>
+<br><br>
+        <strong><p>Baños:</p></strong><input type="number" name="baños">
+        <br><br>
+        <strong><p>balcon:</p></strong><input type="number" name="balcon">
+        <strong><p>pileta:</p></strong><input type="number" name="pileta">
+        <br><br>
+        <strong><p>mascotas:</p></strong><input type="checkbox" name="mascotas" id="checkbox1">
+        <br><br>
+        <strong><p>Cantidad huéspedes (*):</p></strong><input type="number" name="max_personas">
+        <br><br>
+        <input type="submit" value="Buscar">
+
+        
+
+        </div>    
+    </form>
+    </div>
+    <br>
+    <p>(*): campos obligatorios</p>
+
+   <div id="checkbox-value"></div>
+
+   <script type="text/javascript">
+
+$('#checkbox-value').text($('#checkbox1').val());
+
+$("#checkbox1").on('change', function() {
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'True');
+  } else {
+    $(this).attr('value', 'False');
+  }
+  
+  $('#checkbox-value').text($('#checkbox1').val());
+});
+</script>
+-->

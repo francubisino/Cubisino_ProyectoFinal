@@ -1,0 +1,17 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+    <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
+    <h1>Registrate</h1>
+     <br>
+
+&nbsp;&nbsp;<p><strong>¿Estás buscando un paquete que se adecue a tus necesidades? Selecciona las características que deseas que tenga: </strong></p>
+    <br>
+    <form action="buscar_paquete/" method="GET">
+
+        <input type="text" name="paq_ubicacion">
+        <input type="submit" value="Buscar">
+
+    </form>
+    {% endblock %}

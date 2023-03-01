@@ -1,0 +1,59 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+
+&nbsp;&nbsp;<p class="text-dark">Los alojamientos disponibles en base a las características seleccionadas son:</p>
+<br>
+{% if articulos %}  
+
+ 
+
+    {% for articulo in articulos %}
+        
+ 
+        <div align="center">
+        <h2>{{articulo.titulo}}</h2>
+        </div>
+        <br>
+            
+        <div class="container">
+        <ul>
+            <img src="{{articulo.img_alojamiento.url}}">
+            <br><br>
+            <li><strong>Ubicación:</strong>&nbsp;&nbsp;{{articulo.ubicacion}}</li>
+            <li><strong>Precio diario:</strong>&nbsp;$&nbsp;{{articulo.precio_dia}}</li>
+            <li><strong>Cantidad habitaciones:</strong>&nbsp;&nbsp;{{articulo.habitaciones}}</li>
+            <li><strong>Cantidad de baños:</strong>&nbsp;&nbsp;{{articulo.baños}}</li>
+            <li><strong>Balcón:</strong>&nbsp;&nbsp;{% if articulo.balcon is True %}
+            Sí
+            {% else %}
+            No
+            {% endif %}  </li>
+            <li><strong>Pileta:</strong>&nbsp;&nbsp;{% if articulo.pileta is True %}
+            Sí
+             {% else %}
+            No
+            {% endif %}  </li>
+            <li><strong>Apto mascotas:</strong>&nbsp;&nbsp;{% if articulo.mascotas is True %}
+            Sí
+             {% else %}
+            No
+             {% endif %}  </li>
+            <li><strong>Máx. huéspedes:</strong>&nbsp;&nbsp;{{articulo.max_personas}}</li>
+            <li><strong>Descripción:</strong>&nbsp;&nbsp;{{articulo.descripcion}}</li>
+        </ul>
+        </div>
+    &nbsp;&nbsp;&nbsp;
+    
+    {% endfor %}
+    
+
+{% else %}
+    
+    <p>No existen alojamientos disponibles con esas características</p>
+
+{% endif %}
+
+
+{% endblock %}
