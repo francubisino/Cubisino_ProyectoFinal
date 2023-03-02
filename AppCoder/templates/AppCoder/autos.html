@@ -2,16 +2,52 @@
     {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
 {% block contenidoQueCambia %}
 
+
     <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
-    <h1>Autos</h1>
+    <br><br>
+
+    <div style="position: relative; align-content: center; align-items: center;">
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Automóviles</h1>
      <br>
-
-&nbsp;&nbsp;<p><strong>¿Estás buscando un auto? Selecciona las características que deseas que tenga: </strong></p>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Contanos que estás buscando y encontraremos las mejores opciones para vos</h4>
+  
+    <div   align="center" width="1000px" height="700px">
+    
     <br>
-    <form action="buscar_auto/" method="GET">
-
-        <input type="text" name="marca">
-        <input type="submit" value="Buscar">
-
+    
+    
+     
+    <form action="buscar_auto/" method="GET" id="form1" style="width:1000px; height:700px; font-family:Arial, Helvetica, sans-serif; font-size: 16px; ">
+        
+      <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
+      <br>
+      <br>
+        <div class="input-group" style="margin-left:250px;">
+          
+        <p>Marca (*):</p>&nbsp;&nbsp;&nbsp;<input type="text" name="marca" style="height: 30px;"  required>
+        </div>
+        <br>
+       <div  class="input-group" style="margin-left:250px;">
+        <p>Modelo (*):</p>&nbsp;&nbsp;&nbsp;<input type="text" name="modelo" style="height: 30px;" required>
+        </div>
+        <br>
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Precio máximo por día:</p>&nbsp;&nbsp;&nbsp;<input type="number" name="precio_dia" style="height: 30px;">
+        </div>
+        <br>
+        <br>
+        <input type="submit"  class="btn btn-success btn-lg" value="Buscá tu automóvil">
+        <br>
+        <br>
+        <p align="left">(*): campos obligatorios</p>
+        <br>
+        </div> 
+           
     </form>
+    </div>
+    <br>
+    <br>
+   
+
+
     {% endblock %}

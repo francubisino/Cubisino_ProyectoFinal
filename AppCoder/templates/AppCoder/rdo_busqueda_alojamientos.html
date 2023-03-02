@@ -3,10 +3,10 @@
 {% block contenidoQueCambia %}
 
 
-&nbsp;&nbsp;<p class="text-dark">Los alojamientos disponibles en base a las características seleccionadas son:</p>
-<br>
 {% if articulos %}  
-
+<br>
+&nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Los alojamientos disponibles en base a las características seleccionadas son:</h4>
+<br>
  
 
     {% for articulo in articulos %}
@@ -17,9 +17,9 @@
         </div>
         <br>
             
-        <div class="container">
+        <div  class="container">
         <ul>
-            <img src="{{articulo.img_alojamiento.url}}">
+            <img src="{{articulo.img_alojamiento.url}}"  width="700px" height="380px">
             <br><br>
             <li><strong>Ubicación:</strong>&nbsp;&nbsp;{{articulo.ubicacion}}</li>
             <li><strong>Precio diario:</strong>&nbsp;$&nbsp;{{articulo.precio_dia}}</li>
@@ -50,9 +50,11 @@
     
 
 {% else %}
-    
-    <p>No existen alojamientos disponibles con esas características</p>
+    <br><br><br>
 
+    <h4  align="center" style="font-family:Arial, Helvetica, sans-serif;">No existen alojamientos disponibles con esas características</h4>
+
+    <br><br><br>
 {% endif %}
 
 

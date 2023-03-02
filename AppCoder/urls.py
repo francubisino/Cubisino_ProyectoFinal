@@ -25,6 +25,11 @@ urlpatterns = [
     path('registro_correcto/',views.registro_correcto),
     path('registro_error/',views.registro_error),
     
+    
+    path('suscripcion/',views.suscripcion,name='Suscripcion'),
+    path('paquete_confirmado/',views.paquete_confirmado, name='Paquete_confirmado'),
+    
+
     #path('buscar_alojamiento/', views.buscar_alojamiento, name="Alojamientos"),
     #path('',views.busqueda_alojamientos, name="busqueda_alojamientos"),
     

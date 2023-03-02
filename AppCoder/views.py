@@ -6,6 +6,9 @@ from django.db.models import Q
 from datetime import datetime
 # Create your views here.
 
+def suscripcion(request):
+    return render(request,'AppCoder/suscripcion.html')
+
 def inicio(request):
     return render(request,'AppCoder/inicio.html')
 
@@ -45,7 +48,6 @@ def sobre_mi(request):
     return render(request,'AppCoder/sobre_mi.html')
 
 def buscar_alojamiento(request):
-    ######HACERLO DE ESTA FORMA!!!!!!!! GENIOOOOOO!!!!!!!
     if request.GET['ubicacion'] and request.GET['max_personas'] and request.GET['habitaciones']:
         ubicacion=request.GET['ubicacion']
         habitaciones=request.GET['habitaciones']
@@ -107,8 +109,27 @@ def buscar_alojamiento(request):
 #    return render(request, "AppCoder/inicio.html")
 
 
-
 """
+def reservar_alojamiento(request):
+    if request.method == 'POST':
+        miFormulario = ReservarFormulario(request.POST)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            consultas = Consultas(nombre=informacion['nombre'], 
+                                  apellido=informacion['apellido'],
+                                   email=informacion['email'],
+                                    consulta=informacion['consulta'])
+            consultas.save()
+            return render(request,'AppCoder/inicio.html/')
+    else:
+        miFormulario = ConsultasFormulario()
+        
+    return render(request,'AppCoder/consultas.html', {"miFormulario":miFormulario})
+    
+
+
 def alojamientos(request):
     if request.method == 'POST':
         miFormulario = AlojamientosFormulario(request.POST)
@@ -164,7 +185,7 @@ def consultas(request):
                                    email=informacion['email'],
                                     consulta=informacion['consulta'])
             consultas.save()
-            return render(request,'AppCoder/inicio.html/')
+            return render(request,'AppCoder/consulta_enviada.html/')
     else:
         miFormulario = ConsultasFormulario()
         
@@ -175,6 +196,9 @@ def consultas(request):
   
 def paquetes(request):
     return render(request,'AppCoder/paquetes.html')
+
+def paquete_confirmado(request):
+    return render(request,'AppCoder/paquete_confirmado.html')
 
 def buscar_paquete(request):
     if request.GET['paq_ubicacion']:
@@ -199,14 +223,19 @@ def autos(request):
     return render(request,'AppCoder/autos.html')
 
 def buscar_auto(request):
-    if request.GET['marca']:
+    if request.GET['marca'] and request.GET['modelo']:
         marca=request.GET['marca']
-        #modelo=request.GET['modelo']
-        #precio_dia=request.GET['precio_dia']
-        #seguro=request.GET['seguro']
-                
-        #articulos=Pais.objects.filter(pais_origen__icontains=producto)
-        auto=Autos.objects.filter(marca__icontains=marca)
+        modelo=request.GET['modelo']
+        
+        
+        if request.GET['precio_dia']:
+            precio_dia=request.GET['precio_dia']
+        else:
+            precio_dia=99999999999
+                        
+        auto=Autos.objects.filter(marca__icontains=marca,
+                                  modelo__icontains=modelo,
+                                  precio_dia__lte=precio_dia)
         
         return render(request,"AppCoder/rdo_busqueda_autos.html", {"articulos":auto, "query": marca})
         
@@ -219,4 +248,3 @@ def buscar_auto(request):
 
 #def rdo_busqueda_alojamientos(request):
 #    return render(request, "AppCoder/inicio.html")
-

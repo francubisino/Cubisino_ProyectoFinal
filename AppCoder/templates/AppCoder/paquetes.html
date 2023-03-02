@@ -2,16 +2,113 @@
     {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
 {% block contenidoQueCambia %}
 
+<style>
+#col1 {
+position:static;
+top:800px;
+height: 870px;
+margin-left: 160px;
+width:448px;  /*400px*/
+background-color:rgba(4, 250, 4, 0.12);
+border-radius: 5%;
+}
+#col2 {
+position:static;
+top:800px;
+height: 870px;
+margin-left: 100px;
+width:448px;  /*400px*/
+background-color:rgba(4, 250, 4, 0.12);
+border-radius: 5%;
+}
+#col3 {
+position:static;
+top:800px;
+height: 870px;
+margin-left: 100px;
+width:448px;  /*400px*/
+background-color:rgba(4, 250, 4, 0.12);
+border-radius: 5%;
+}
+
+
+</style>
+    <br><br>
     <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
-    <h1>Paquete</h1>
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Paquetes</h1>
      <br>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Elegí uno de los paquetes que preparamos para vos</h4>
+  
 
-&nbsp;&nbsp;<p><strong>¿Estás buscando un paquete que se adecue a tus necesidades? Selecciona las características que deseas que tenga: </strong></p>
-    <br>
-    <form action="buscar_paquete/" method="GET">
+    <br><br>    
+       
+    <div class="input-group" style="margin-left:150px">        
+            <div id="col1" style="box-shadow:
+       
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3); background-color: whitesmoke;">
+            <img src="{% static 'AppCoder/assets/img/paq_brasil2.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 452px; border-top-left-radius: 5%; border-top-right-radius: 5%; margin-left:-2px; margin-top:-2px">
+            <br><br>
+            <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            </div>
+            <br>
+            <h2 style="margin-left:10px">Paquete a Brasil</h2>
+            <p style="margin-left:10px">4 días en <strong>Río de Janeiro</strong></p>
+            <p style="margin-left:10px">6 días en <strong>Buzios</strong></p>
+            <hr size="30px">
+            <p style="margin-left:10px">Precio final por persona:</p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            <hr>
+            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <br><br><br><br>
+            <br>
+            </div>
+            <div id="col2" style="box-shadow:
+       
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3); background-color: whitesmoke;">
+            <img src="{% static 'AppCoder/assets/img/paq_peru3.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 453px; border-top-left-radius: 5%; border-top-right-radius: 5%; margin-left:-2px; margin-top:-2px">
+            <br><br>
+            <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            </div>
+            <br>
+            <h2 style="margin-left:10px">Paquete a Brasil</h2>
+            <p style="margin-left:10px">4 días en <strong>Río de Janeiro</strong></p>
+            <p style="margin-left:10px">6 días en <strong>Buzios</strong></p>
+            <hr size="30px">
+            <p style="margin-left:10px">Precio final por persona:</p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            <hr>
+            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <br><br><br><br>
+            <br>
+            </div>
+            <div id="col3" style="box-shadow:
+       
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3); background-color: whitesmoke;">
+            <img src="{% static 'AppCoder/assets/img/paq_ushuaia1.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 451px; border-top-left-radius: 5%; border-top-right-radius: 5%;margin-left:-2px; margin-top:-2px">
+            <br><br>
+            <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            </div>
+            <br>
+            <h2 style="margin-left:10px">Paquete a Brasil</h2>
+            <p style="margin-left:10px">4 días en <strong>Río de Janeiro</strong></p>
+            <p style="margin-left:10px">6 días en <strong>Buzios</strong></p>
+            <hr size="30px">
+            <p style="margin-left:10px">Precio final por persona:</p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            <hr>
+            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <br><br><br><br>
+            <br>
+            </div>
 
-        <input type="text" name="paq_ubicacion">
-        <input type="submit" value="Buscar">
+    </div>
+<br><br>
 
-    </form>
+<br>
     {% endblock %}

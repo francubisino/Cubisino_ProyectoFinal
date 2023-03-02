@@ -1,5 +1,5 @@
 from django import forms
-from AppCoder.models import usuarios
+from AppCoder.models import usuarios, Alojamientos
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -14,7 +14,7 @@ class ConsultasFormulario(forms.Form):
     nombre=forms.CharField()
     apellido=forms.CharField()
     email=forms.EmailField()    
-    consulta=forms.CharField()
+    consulta=forms.CharField(max_length=150)
 
 class AlojamientosFormulario(forms.Form):
     ubicacion=forms.CharField(max_length=30)
@@ -27,6 +27,7 @@ class AlojamientosFormulario(forms.Form):
     mascotas=forms.BooleanField()
     max_personas=forms.IntegerField()
     descripcion=forms.CharField(max_length=200)
+       
     
 class InicioFormulario(forms.Form):
     pais_origen=forms.CharField()

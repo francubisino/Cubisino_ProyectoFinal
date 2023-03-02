@@ -10,7 +10,7 @@ class Autos(models.Model):
     marca=models.CharField(max_length=30)
     modelo=models.CharField(max_length=40)
     precio_dia=models.IntegerField()
-    seguro=models.BooleanField(default=False)
+    img_auto=models.ImageField(null=True, blank=True, upload_to='img/')
 
 class Alojamientos(models.Model):
     ubicacion=models.CharField(max_length=30, default='NULL')
@@ -25,6 +25,7 @@ class Alojamientos(models.Model):
     titulo=models.CharField(max_length=100, default='NULL')
     img_alojamiento=models.ImageField(null=True, blank=True, upload_to='img/')
     descripcion=models.CharField(max_length=200, default='NULL')
+
 
 class Paquetes(models.Model):
     paq_ubicacion=models.CharField(max_length=30)
