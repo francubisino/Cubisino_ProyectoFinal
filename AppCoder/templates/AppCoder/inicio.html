@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'AppCoder/css/styles.css' %}" rel="stylesheet"/>
-        <link href="{% static 'AppCoder/css/styles1.css' %}" rel="stylesheet"/>
+        <!-- <link href="{% static 'AppCoder/css/styles1.css' %}" rel="stylesheet"/>-->
 
         <style>
             .logo {       
@@ -172,20 +172,71 @@ background-color:#ffffbb;
       
             </div>
             
+            <!--Si el usuario inició sesión ve este menú-->
+            {% if user.is_authenticated %}
+            
+            <!--MENU TEXTUAL
             <div>
             <div class="dropdown">
-            <a  href="{% url 'Inicio_sesion' %}"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Iniciar sesión</button></a>
+            <p style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Hola, <strong>{{user.username}}</strong></p>
+            </div>
+            <div class="dropdown">
+            <a  href="#"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Perfil</button></a>
+            </div> 
+            <div class="dropdown">
+            <a  href="{% url 'logout' %}"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Cerrar sesión</button></a>
+            </div>
+            </div> -->
+
+          
+            <!--Boton Desplegable-->
+            <div class="btn-group">
+                
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="width:230px; height:45px; margin-right:100px; font-size: 20px; font-family:Georgia, 'Times New Roman', Times, serif;">
+            <div class="input-group">
+                  <!--Avatar-->
+                <div class="col-md-2" >
+            {% if request.user.profile.avatar %}
+                <img src="{{request.user.profile.avatar.url}}" class="img-fluid"  style="border-radius: 50%; height: 35px; width:35px; margin-bottom: -25px; margin-top: -42px;">
+            {% else %}
+                <img src="{% static 'AppCoder/assets/img/no_avatar.png' %}" class="img-fluid"  style="border-radius: 50%;">
+            {% endif %}
+                </div>
+
+                <div style="margin-left:15px; margin-bottom: -45px; margin-top: -8px; font-size: 20px;">
+                    Hola, <strong>{{user.username}}</strong>
+                </div>
+            </div>
+            </button>
+            <ul class="dropdown-menu" style="margin-right:30px; font-size: 20px; font-family:Georgia, 'Times New Roman', Times, serif;">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Mis reservas</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'Mis_alojamientos' %}">Mis alojamientos</a></li>
+                <li><a class="dropdown-item" href="{% url 'Cargar_alojamiento' %}">Cargar alojamiento</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+            </ul>
+            </div>
+
+            <!--Si el usuario no inició sesión ve este otro menú-->
+            {% else %}
+
+            <div>
+            <div class="dropdown">
+            <a  href="{% url 'login' %}"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Iniciar sesión</button></a>
             </div> 
             <div class="dropdown">
             <a  href="{% url 'Registro' %}"><button class="dropbtn" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size: 20px;">Registrate</button></a>
             </div>
             </div> 
+            {% endif %}
         </div>
 
             
          <!-- Navigation-->
         <hr id="divisor" size="3px">
-        <nav class="navbar navbar-light bg-light static-top" style="height: 87px;">
+        <nav class="navbar navbar-light bg-light static-top" style="height: 87px; margin-bottom: 2px;">
        
             <div class="container" id="img_menu">
                 <a class="navbar-brand" href="{% url 'Inicio' %}"><img class="navbar-brand" src="{% static 'AppCoder/assets/menu/inicio_img1.png' %}"></a>
@@ -208,7 +259,7 @@ background-color:#ffffbb;
             </div>
         </nav>-->
         
-        <header>
+        
                         <!--<div class="text-center text-white">-->
                         <div>
                             <!-- Page heading-->
@@ -216,13 +267,11 @@ background-color:#ffffbb;
                            <!--<div  class="texto_encabezado2"><strong>Bote</strong></div>-->
                            <div  class="texto_encabezado"><strong>Encontrá todo lo que necesitas para tu viaje</strong></div>
                         </div>
-        </header>
-
         <!--Esto es lo que va a cambiar-->
         
         {% block contenidoQueCambia %}
-        <br><br>    
-        <h1 style="font-family:Arial, Helvetica, sans-serif; font-size: 37px; margin-left:20px;">¿Sos nuevo en Bote?</h1>
+        <br><br>
+        <h1 style="font-family:'Times New Roman', Times, serif; font-size: 42px; margin-left:20px;">¿Sos nuevo en Bote?</h1>
         <br><br>
         <div class="container input-group">        
             <div id="col1" style="background-color: rgba(255, 255, 255,0.6); border-radius: 3%;  padding: 20px;
@@ -254,21 +303,30 @@ background-color:#ffffbb;
        
              0 0  0 2px rgb(255,255,255),
              0.3em 0.3em 1em rgba(0,0,0,0.3);">
-            <p style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; margin-top:12px;"><strong>Aprovecha nuestras ofertas</strong></p>
+            <p style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; margin-top:12px;"><strong>Aprovechá nuestras ofertas</strong></p>
             <p style="margin-left:10px; margin-right:10px; text-align: left;  font-family:'Times New Roman', Times, serif; font-size: 24px;">Debajo puedes suscribite a nuestras ofertas para ser el primero en enterarte de ellas</p>
             </div>
         </div>
         
         <br><br><br>   
-        <h1 style="font-family:Arial, Helvetica, sans-serif; font-size: 37px; margin-left:20px;">Ofertas</h1>
-        <br><br>
-        
-              
-       
-  
-        <!--<div style="border-color:darkblue; border-style: solid; border-width: 3px;">
-            <p>SUSCRIPCION A OFERTAS (INGRESANDO SÓLO EL MAIL)</p>
-            </div>  -->
+        <div align="center">
+        <h1 style="font-family:'Times New Roman', Times, serif; font-size: 42px; margin-left:20px;">Suscribite a nuestras ofertas</h1>
+        <br>
+    <form action="suscripcion/" method="POST" > {% csrf_token %} 
+        <div>
+            
+            <div>
+            <input type="text" name="email" style="height: 50px; width:330px;" placeholder="Ingresá tu email">
+            <br><br>
+            <input type="submit"  class="btn btn-success btn-lg" value="Suscribirme">
+            </div>
+        </div>
+            
+            <br><br>
+    </form>
+
+        </div>
+        <br><br><br>
 
         {% endblock %}
         <!-- Footer-->
@@ -280,14 +338,8 @@ background-color:#ffffbb;
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
-                            <li class="list-inline-item me-4">
-                                <a href="https://www.cubisino_proyectocoder.com/"><i class="bi-facebook fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item me-4">
-                                <a href="https://www.cubisino_proyectocoder.com/"><i class="bi-twitter fs-3"></i></a>
-                            </li>
                             <li class="list-inline-item">
-                                <a href="https://www.cubisino_proyectocoder.com/"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://github.com/francubisino/"><i class="bi-github fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

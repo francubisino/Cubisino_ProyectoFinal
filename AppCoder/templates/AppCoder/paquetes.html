@@ -7,7 +7,7 @@
 position:static;
 top:800px;
 height: 870px;
-margin-left: 160px;
+margin-left: 50px;
 width:448px;  /*400px*/
 background-color:rgba(4, 250, 4, 0.12);
 border-radius: 5%;
@@ -41,8 +41,8 @@ border-radius: 5%;
   
 
     <br><br>    
-       
-    <div class="input-group" style="margin-left:150px">        
+    <div align="center">
+    <div class="input-group" style="margin-left:150px; width:1700px; height:1000px;">        
             <div id="col1" style="box-shadow:
        
              0 0  0 2px rgb(255,255,255),
@@ -50,7 +50,7 @@ border-radius: 5%;
             <img src="{% static 'AppCoder/assets/img/paq_brasil2.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 452px; border-top-left-radius: 5%; border-top-right-radius: 5%; margin-left:-2px; margin-top:-2px">
             <br><br>
             <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
-            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:6px;"><strong>  10 días/9 noches</strong></p>
             </div>
             <br>
             <h2 style="margin-left:10px">Paquete a Brasil</h2>
@@ -59,54 +59,61 @@ border-radius: 5%;
             <hr size="30px">
             <p style="margin-left:10px">Precio final por persona:</p>
             <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            {% if user.is_authenticated %}
             <hr>
-            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <center><a href="{% url 'Reserva_confirmada' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
             <br><br><br><br>
             <br>
+            {% endif %}
             </div>
             <div id="col2" style="box-shadow:
        
-             0 0  0 2px rgb(255,255,255),
+             
              0.3em 0.3em 1em rgba(0,0,0,0.3); background-color: whitesmoke;">
             <img src="{% static 'AppCoder/assets/img/paq_peru3.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 453px; border-top-left-radius: 5%; border-top-right-radius: 5%; margin-left:-2px; margin-top:-2px">
             <br><br>
             <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
-            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);"><strong>  16 días/15 noches</strong></p>
             </div>
             <br>
-            <h2 style="margin-left:10px">Paquete a Brasil</h2>
-            <p style="margin-left:10px">4 días en <strong>Río de Janeiro</strong></p>
-            <p style="margin-left:10px">6 días en <strong>Buzios</strong></p>
+            <h2 style="margin-left:10px">Paquete a Perú</h2>
+            <p style="margin-left:10px">10 días en <strong>Cusco</strong></p>
+            <p style="margin-left:10px">6 días en <strong>Lima</strong></p>
             <hr size="30px">
             <p style="margin-left:10px">Precio final por persona:</p>
-            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>27.799</strong></p>
+            {% if user.is_authenticated %}
             <hr>
-            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <center><a href="{% url 'Reserva_confirmada' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
             <br><br><br><br>
             <br>
+            {% endif %}
             </div>
             <div id="col3" style="box-shadow:
        
              0 0  0 2px rgb(255,255,255),
              0.3em 0.3em 1em rgba(0,0,0,0.3); background-color: whitesmoke;">
-            <img src="{% static 'AppCoder/assets/img/paq_ushuaia1.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 451px; border-top-left-radius: 5%; border-top-right-radius: 5%;margin-left:-2px; margin-top:-2px">
+            <img src="{% static 'AppCoder/assets/img/paq_ushuaia1.jpg' %}" style="text-align:center;  font-family:'Times New Roman', Times, serif; font-size: 25px; height: 452px; width: 451px; border-top-left-radius: 5%; border-top-right-radius: 5%;margin-left:-1px; margin-top:-2px">
             <br><br>
             <div style='background-color:green; width: 150px; height: 30px; border-radius: 7%; margin-left: 10px;'>
-            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:10px;"><strong>  10 días/9 noches</strong></p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 20px; color:rgb(255, 255, 255);margin-left:6px;"><strong>  6 días/5 noches</strong></p>
             </div>
             <br>
-            <h2 style="margin-left:10px">Paquete a Brasil</h2>
-            <p style="margin-left:10px">4 días en <strong>Río de Janeiro</strong></p>
-            <p style="margin-left:10px">6 días en <strong>Buzios</strong></p>
+            <h2 style="margin-left:10px">Paquete a Ushuaia</h2>
+            <p style="margin-left:10px">6 días en <strong>Ushuaia</strong></p>
+            <br>
             <hr size="30px">
             <p style="margin-left:10px">Precio final por persona:</p>
-            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>15.499</strong></p>
+            <p style="font-family:'Times New Roman', Times, serif; font-size: 40px; color:rgb(0, 0, 0); margin-left: 10px;">$<strong>11.200</strong></p>
+            {% if user.is_authenticated %}
             <hr>
-            <center><a href="{% url 'Paquete_confirmado' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
+            <center><a href="{% url 'Reserva_confirmada' %}"><button type="submit" class="btn btn-success btn-lg">Reservar</button></center></a>
             <br><br><br><br>
             <br>
+            {% endif %}
             </div>
 
+    </div>
     </div>
 <br><br>
 

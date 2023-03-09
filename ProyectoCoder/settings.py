@@ -18,7 +18,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/img/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'AppCoder/static/AppCoder/assets')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'AppCoder/static/AppCoder/assets/')
 
 
 # Quick-start development settings - unsuitable for production
@@ -130,6 +130,7 @@ STATIC_DIR = os.path.join(BASE_DIR,"static")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGOUT_REDIRECT_URL ="/"
 
-
+LOGIN_REDIRECT_URL='/'
 

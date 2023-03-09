@@ -19,8 +19,12 @@
             
         <div  class="container">
         <ul>
-            <img src="{{articulo.img_alojamiento.url}}"  width="700px" height="380px">
+            <div align="center">
+            <img src="{{articulo.img_alojamiento.url}}"  width="700px" height="380px"  style="box-shadow:
+             0.3em 0.3em 1em rgba(0,0,0,0.3);">
+            </div>
             <br><br>
+            <div style="margin-left:200px;">
             <li><strong>Ubicación:</strong>&nbsp;&nbsp;{{articulo.ubicacion}}</li>
             <li><strong>Precio diario:</strong>&nbsp;$&nbsp;{{articulo.precio_dia}}</li>
             <li><strong>Cantidad habitaciones:</strong>&nbsp;&nbsp;{{articulo.habitaciones}}</li>
@@ -42,11 +46,19 @@
              {% endif %}  </li>
             <li><strong>Máx. huéspedes:</strong>&nbsp;&nbsp;{{articulo.max_personas}}</li>
             <li><strong>Descripción:</strong>&nbsp;&nbsp;{{articulo.descripcion}}</li>
+            </div>
         </ul>
         </div>
+        {% if user.is_authenticated %}
+        <div align="center">
+        <a href="{% url 'Reserva_confirmada' %}"><input type="submit"  class="btn btn-success btn-lg" value="Reservar"></a>
     &nbsp;&nbsp;&nbsp;
-    
+        </div>
+        
+        {% endif %}
+        <br><br>
     {% endfor %}
+  
     
 
 {% else %}

@@ -1,0 +1,16 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+    <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
+   
+    <br>
+    <br>
+    <h3 style="color:black; text-align:center">¡Has realizado tu reserva con éxito!</h3>
+    <p style="color:black; text-align:center">Te enviamos un mail de confirmación con la factura de tu compra a <strong>{{user.email}}</strong></p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% endblock %}

@@ -1,0 +1,25 @@
+    {% extends "AppCoder/padre.html" %}
+    {% load static %}
+    {% block contenidoQueCambia %}
+
+    <!-- Aqui va lo que cambia y lo asociado a la vista-->
+    {% if miFormulario.error %}
+    <p style="color:red;"> Estan mal los datos, revisar</p>
+
+    {% endif %}
+    <br><br>
+
+<div style="position: relative; align-content: center; align-items: center;">
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">¡Gracias!</h1>
+     <br>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Tu consulta ha sido enviada</h4>
+  
+    <br>
+    <br>
+  
+</div>
+    <br>
+    <br>
+
+
+{% endblock %}

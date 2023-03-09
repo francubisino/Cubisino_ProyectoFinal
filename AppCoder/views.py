@@ -4,10 +4,17 @@ from AppCoder.models import *
 from AppCoder.forms import *
 from django.db.models import Q
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.contrib.auth import views
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+from .models import Profile
+from django.shortcuts import render, get_object_or_404
+
 # Create your views here.
 
-def suscripcion(request):
-    return render(request,'AppCoder/suscripcion.html')
 
 def inicio(request):
     return render(request,'AppCoder/inicio.html')
@@ -15,11 +22,14 @@ def inicio(request):
 def inicio_logueado(request):
     return render(request,'AppCoder/inicio_logueado.html')
 
-def inicio_sesion(request):
-    return render(request,'AppCoder/inicio_sesion.html')
+def carga_alojamiento_correcta(request):
+    return render(request,'AppCoder/carga_alojamiento_correcta.html')
+
+#def inicio_sesion(request):
+#    return render(request,'registration/login.html')
 
 def registro(request):
-    mis_usuarios= usuarios.objects.all()
+    mis_usuarios= User.objects.all()
     if request.method == 'POST':
        register_form = RegistrarUsuario(request.POST)
        if register_form.is_valid():
@@ -43,6 +53,9 @@ def registro_error(request):
 
 def alojamientos(request):
     return render(request,'AppCoder/alojamientos.html')
+
+def mis_alojamientos(request):
+    return render(request,'AppCoder/mis_alojamientos.html')
 
 def sobre_mi(request):
     return render(request,'AppCoder/sobre_mi.html')
@@ -190,15 +203,82 @@ def consultas(request):
         miFormulario = ConsultasFormulario()
         
     return render(request,'AppCoder/consultas.html', {"miFormulario":miFormulario})
+
+def cargar_alojamiento(request):
+   if request.method == 'POST':
+        miFormulario = CargarAlojamientoFormulario(request.POST,request.FILES)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            
+            alojamiento = Alojamientos(ubicacion=informacion['ubicacion'],
+                                       precio_dia=informacion['precio_dia'],
+                                        habitaciones= informacion['habitaciones'],
+                                        tipo= informacion['tipo'],
+                                        baños= informacion['baños'],
+                                        balcon= informacion['balcon'],
+                                        pileta= informacion['pileta'],
+                                        mascotas= informacion['mascotas'],
+                                        max_personas= informacion['max_personas'],
+                                        descripcion= informacion['descripcion'],
+                                        propietario=informacion['propietario'],
+                                        huesped="Desocupado",
+                                        titulo= informacion['titulo'],
+                                        img_alojamiento= informacion['img_alojamiento'])
+           
+            alojamiento.save()
+            return render(request,'AppCoder/carga_alojamiento_correcta.html/')
+   else:
+        miFormulario = CargarAlojamientoFormulario()
+        
+   return render(request,'AppCoder/cargar_alojamiento.html', {"miFormulario":miFormulario})
     
-    #return render(request,'AppCoder/estudiantes.html')
+
+
+def pruebas(request):
+    if request.method == 'POST':
+        miFormulario = PruebasFormulario(request.POST,request.FILES)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            prueba = Pruebas(ubicacion=informacion['ubicacion'],
+                             img_alojamiento=informacion['img_alojamiento']
+                             )
+            prueba.save()
+            return render(request,'AppCoder/consulta_enviada.html/')
+    else:
+        miFormulario = PruebasFormulario()
+        
+    return render(request,'AppCoder/prueba.html', {"miFormulario":miFormulario})
+
+
+
+            
+def suscripcion(request):
+    if request.method == 'POST':
+        miFormulario = SuscripcionFormulario(request.POST)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            suscripcion = Suscripciones(email=informacion['email'])
+            
+            suscripcion.save()
+            return render(request,'AppCoder/suscripcion_correcta.html/')
+    else:
+        miFormulario = SuscripcionFormulario()
+        
+    return render(request,'AppCoder/inicio.html', {"miFormulario":miFormulario})
+    
   
   
 def paquetes(request):
     return render(request,'AppCoder/paquetes.html')
 
-def paquete_confirmado(request):
-    return render(request,'AppCoder/paquete_confirmado.html')
+def reserva_confirmada(request):
+    return render(request,'AppCoder/reserva_confirmada.html')
 
 def buscar_paquete(request):
     if request.GET['paq_ubicacion']:
@@ -223,28 +303,146 @@ def autos(request):
     return render(request,'AppCoder/autos.html')
 
 def buscar_auto(request):
-    if request.GET['marca'] and request.GET['modelo']:
-        marca=request.GET['marca']
-        modelo=request.GET['modelo']
-        
-        
-        if request.GET['precio_dia']:
-            precio_dia=request.GET['precio_dia']
-        else:
-            precio_dia=99999999999
-                        
-        auto=Autos.objects.filter(marca__icontains=marca,
-                                  modelo__icontains=modelo,
-                                  precio_dia__lte=precio_dia)
-        
-        return render(request,"AppCoder/rdo_busqueda_autos.html", {"articulos":auto, "query": marca})
-        
-        
+    if request.GET['marca'] == "Todos":
+        marca = ['Ford','Citroen','Chevrolet','Volkswagen']
     else:
-        mensaje="No ingresaste texto"
+        marca = [request.GET['marca']]
     
-    return HttpResponse(mensaje)
+    if request.GET['precio_dia']:
+        precio_dia=request.GET['precio_dia']
+    else:
+        precio_dia=99999999999
+      
+    if request.GET['modelo']:
+        modelo=request.GET['modelo']
+           
+        auto=Autos.objects.filter((Q(marca__icontains=marca)|Q(marca__in=marca)),
+                                    modelo__icontains=modelo,
+                                    precio_dia__lte=precio_dia)
+    else:
+        auto=Autos.objects.filter((Q(marca__icontains=marca)|Q(marca__in=marca)),
+                                    precio_dia__lte=precio_dia)
+        
+    return render(request,"AppCoder/rdo_busqueda_autos.html", {"articulos":auto, "query": marca})
+
+def buscar_mis_alojamientos(request):
+    global propietario,propietarios
+    propietario = [request.GET['propietario']]
+              
+    propietarios=Alojamientos.objects.filter(propietario__in=propietario)
+    
+        
+    return render(request,"AppCoder/rdo_busqueda_mis_alojamientos.html", {"articulos":propietarios, "query": propietario})
+    #return render(request,"AppCoder/rdo_busqueda_mis_alojamientos.html")
 
 
-#def rdo_busqueda_alojamientos(request):
-#    return render(request, "AppCoder/inicio.html")
+@method_decorator(login_required, name='dispatch')
+class ProfileUpdate(UpdateView):
+    #form_class=ProfileForm
+    model = Profile
+    fields = ['avatar','bio','link']
+    success_url = reverse_lazy('profile')
+    
+    def get_object(self):
+        try:
+            return Profile.objects.get(user=self.request.user)
+        except Profile.DoesNotExist:
+            return Profile.objects.create(user=self.request.user)
+        #profile, created = Profile.objects.get_or_create(user=self.request.user)
+        #return profile
+       # return Profile.objects.get(user=self.request.user)
+       
+
+def borrarAlojamiento(request,titulo):
+    alojamiento= get_object_or_404(Alojamientos, titulo=titulo)
+    alojamiento.delete()
+
+
+           
+    propietarios=Alojamientos.objects.filter(propietario__in=propietario)
+           
+    return render(request,"AppCoder/rdo_busqueda_mis_alojamientos.html", {"articulos":propietarios, "query": propietario})
+
+
+"""         max_personas=request.GET['max_personas']
+            
+        if request.GET['tipo'] == "Todos":
+            tipo = ['Casa','Contenedores','Mansión','Casa-Quinta','Departamento']
+        else:
+            tipo = [request.GET['tipo']]
+            
+                alojamiento=Alojamientos.objects.filter(ubicacion__icontains=ubicacion,
+                                                    precio_dia__lte=precio_dia, #Busca los que tienen precio_dia igual o menor al ingresado
+                                                    habitaciones=habitaciones,
+                                                    tipo__in=tipo,
+                                                    baños__gte=baños,
+                                                    balcon=balcon,
+                                                    pileta=pileta,
+                                                    mascotas=mascotas,
+                                                    max_personas__gte=max_personas) 
+            #TIENE QUE SER UN AND, Y NO UN OR
+            
+            #alojamiento=Alojamientos.objects.filter(Q(habitaciones__icontains=habitaciones) | Q(ubicacion__icontains=ubicacion))
+            
+        return render(request,"AppCoder/rdo_busqueda_alojamientos.html", {"articulos":alojamiento, "query": ubicacion})"""
+
+#Views del CRUD
+"""def leerProfesores(request):
+    profesores= Profesor.objects.all()
+    contexto = {"profesores": profesores}
+    return render(request, "AppCoder/leerProfesores.html",contexto)
+"""
+"""
+def borrarAlojamiento(request,titulo):
+    alojamiento= Alojamientos.objects.get(titulo=titulo)
+    if request.method == 'POST':
+        miFormulario = AlojamientosFormulario(request.POST)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            
+            alojamiento.titulo=informacion['titulo'],
+            
+            alojamiento.save()
+            return render(request,'AppCoder/rdo_busqueda_mis_alojamientos.html/') #Luego de ser ejecutado vuelve a esta pagina
+    #else:
+    #    miFormulario = ProfesorFormulario(initial = {'nombre': profesor.nombre,
+    #                                                 'apellido': profesor.apellido,
+    #                                                 'email': profesor.email,
+    #                                                 'profesion': profesor.profesion})
+    
+    return render(request, "AppCoder/rdo_busqueda_mis_alojamientos.html", {"miFormulario":miFormulario})
+"""
+"""def eliminarProfesor(request,profesor_nombre):
+    profesor= Profesor.objects.get(nombre=profesor_nombre)
+    profesor.delete()
+    
+    profesores= Profesor.objects.all()
+    contexto = {"profesores": profesores}
+    return render(request, "AppCoder/leerProfesores.html",contexto)
+
+def editarProfesor(request,profesor_nombre):
+    profesor= Profesor.objects.get(nombre=profesor_nombre)
+    if request.method == 'POST':
+        miFormulario = ProfesorFormulario(request.POST)
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            
+            profesor.nombre=informacion['nombre'],
+            profesor.apellido=informacion['apellido'],
+            profesor.email=informacion['email'],
+            profesor.profesion=informacion['profesion'],
+            
+            profesor.save()
+            return render(request,'AppCoder/inicio.html/') #Luego de ser ejecutado vuelve a esta pagina
+    else:
+        miFormulario = ProfesorFormulario(initial = {'nombre': profesor.nombre,
+                                                     'apellido': profesor.apellido,
+                                                     'email': profesor.email,
+                                                     'profesion': profesor.profesion})
+    
+    return render(request, "AppCoder/editarProfesor.html", {"miFormulario":miFormulario})
+"""

@@ -1,0 +1,78 @@
+{% extends "AppCoder/padre.html" %} <!--la fuente de nuestros datos-->
+    {% load static %}  <!--Toma lo que está dentro de la carpeta "static"-->
+{% block contenidoQueCambia %}
+
+
+{% if articulos %}  
+<br>
+&nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Los alojamientos disponibles en base a las características seleccionadas son:</h4>
+<br>
+ 
+
+    {% for articulo in articulos %}
+        
+ 
+        <div align="center">
+        <h2>{{articulo.titulo}}</h2>
+        </div>
+        <br>
+            
+        <div  class="container">
+        <ul>
+            <div align="center">
+            <img src="{{articulo.img_alojamiento.url}}"  width="700px" height="380px"  style="box-shadow:
+             0.3em 0.3em 1em rgba(0,0,0,0.3);">
+            </div>
+            <br><br>
+            <div style="margin-left:200px;">
+            <li><strong>Ubicación:</strong>&nbsp;&nbsp;{{articulo.ubicacion}}</li>
+            <li><strong>Precio diario:</strong>&nbsp;$&nbsp;{{articulo.precio_dia}}</li>
+            <li><strong>Cantidad habitaciones:</strong>&nbsp;&nbsp;{{articulo.habitaciones}}</li>
+            <li><strong>Cantidad de baños:</strong>&nbsp;&nbsp;{{articulo.baños}}</li>
+            <li><strong>Balcón:</strong>&nbsp;&nbsp;{% if articulo.balcon is True %}
+            Sí
+            {% else %}
+            No
+            {% endif %}  </li>
+            <li><strong>Pileta:</strong>&nbsp;&nbsp;{% if articulo.pileta is True %}
+            Sí
+             {% else %}
+            No
+            {% endif %}  </li>
+            <li><strong>Apto mascotas:</strong>&nbsp;&nbsp;{% if articulo.mascotas is True %}
+            Sí
+             {% else %}
+            No
+             {% endif %}  </li>
+            <li><strong>Máx. huéspedes:</strong>&nbsp;&nbsp;{{articulo.max_personas}}</li>
+            <li><strong>Descripción:</strong>&nbsp;&nbsp;{{articulo.descripcion}}</li>
+            </div>
+        </ul>
+        </div>
+        {% if user.is_authenticated %}
+        <div align="center">
+        <a href="{% url 'Reserva_confirmada' %}"><input type="submit"  class="btn btn-success btn-lg" value="Reservar"></a>  <!--este lo tengo que borrar-->
+        <a href="#"><input type="submit"  class="btn btn-success btn-lg" value="Editar"></a>
+        <a href="{% url 'Borrar_alojamiento' articulo.titulo %}"><input type="submit"  class="btn btn-success btn-lg" value="Borrar"></a>
+        
+
+
+    &nbsp;&nbsp;&nbsp;
+        </div>
+        
+        {% endif %}
+        <br><br>
+    {% endfor %}
+  
+    
+
+{% else %}
+    <br><br><br>
+
+    <h4  align="center" style="font-family:Arial, Helvetica, sans-serif;">No existen alojamientos disponibles con esas características</h4>
+
+    <br><br><br>
+{% endif %}
+
+
+{% endblock %}
