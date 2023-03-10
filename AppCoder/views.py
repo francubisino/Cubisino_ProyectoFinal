@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from AppCoder.models import *
 from AppCoder.forms import *
 from django.db.models import Q
+from django import forms
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth import views
@@ -12,6 +13,11 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import Profile
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView,PasswordResetDoneView
+from django.contrib.auth.forms import PasswordChangeForm
+from .forms import  FormularioCambioPassword
+
 
 # Create your views here.
 
@@ -21,6 +27,11 @@ def inicio(request):
 
 def inicio_logueado(request):
     return render(request,'AppCoder/inicio_logueado.html')
+
+def carga_alojamiento_correcta(request):
+    return render(request,'AppCoder/carga_alojamiento_correcta.html')
+
+
 
 def carga_alojamiento_correcta(request):
     return render(request,'AppCoder/carga_alojamiento_correcta.html')
@@ -446,3 +457,27 @@ def editarProfesor(request,profesor_nombre):
     
     return render(request, "AppCoder/editarProfesor.html", {"miFormulario":miFormulario})
 """
+
+"""
+class UserChangePassword(LoginRequiredMixin, FormView):
+    model = User
+    form_class= PasswordChangeForm
+    template_name = 'AppCoder/change_password.html' 
+    success_url= reverse_lazy('login')
+"""
+    
+class MyPasswordChangeView(PasswordChangeView):
+    template_name='AppCoder/change_password.html'
+    success_url=reverse_lazy('password-change-done')
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name='AppCoder/change_password_done.html'
+
+
+class CambioPassword(PasswordChangeView):
+    form_class = FormularioCambioPassword
+    template_name = 'AppCoder/cambio_password.html'
+    success_url = reverse_lazy('password_exitoso')
+
+def password_exitoso(request):
+    return render(request, 'AppCoder/cambio_pw_correcto.html', {})

@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import Profile
+from django.contrib.auth.forms import PasswordChangeForm
 
 class AutosFormulario(forms.Form):
     marca=forms.CharField(max_length=30)
@@ -137,3 +138,16 @@ class ProfileForm(forms.ModelForm):
 
 class MisAlojamientosFormulario(forms.Form):
     propietario=forms.CharField(max_length=30)
+    
+    
+class FormularioCambioPassword(PasswordChangeForm):
+    old_password = forms.CharField(label=("Password Actual"),
+                                   widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    new_password1 = forms.CharField(label=("Nuevo Password"),
+                                   widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    new_password2 = forms.CharField(label=("Repita Nuevo Password"),
+                                   widget=forms.PasswordInput(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')

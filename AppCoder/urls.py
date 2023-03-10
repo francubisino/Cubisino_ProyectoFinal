@@ -1,6 +1,6 @@
 from django.urls import path
 from AppCoder import views
-from .views import ProfileUpdate
+from .views import ProfileUpdate, MyPasswordChangeView, MyPasswordResetDoneView,CambioPassword
 
 #Los "name" son los nombres de los titulos del navbar
 
@@ -20,7 +20,11 @@ urlpatterns = [
     path('buscar_mis_alojamientos/', views.buscar_mis_alojamientos, name="Buscar_mis_alojamientos"),
     path('rdo_busqueda_mis_alojamientos/<titulo>/',views.borrarAlojamiento, name='Borrar_alojamiento'),
     path('inicio',views.borrarAlojamiento, name='Borrar_alojamiento'),
-    
+    #path('change_password/', MyPasswordChangeView.as_view(), name='password-change-view'),
+    #path('change_password_done/', MyPasswordResetDoneView.as_view(), name='password-change-done'),
+    path('cambio_password/', CambioPassword.as_view(), name='cambiar_password'),
+    path('cambio_pw_correcto/' , views.password_exitoso, name='password_exitoso'),
+    #path('change_password/', MyPasswordChangeView.as_view(), name='password-change-view'),
     #path('borrar_alojamiento/', views.borrarAlojamiento, name="Borrar_alojamiento"),
     #path('rdo_busqueda_mis_alojamientos/<titulo>/',views.borrarAlojamiento, name='Borrar_alojamiento'),
     
@@ -29,7 +33,6 @@ urlpatterns = [
     
     #path('carga_alojamiento_correcta/', views.carga_alojamiento_correcta),
     #path(r'^upload$', 'upload_image_view', name='upload_image_view'),
-    #path('accounts/login/', views.inicio_sesion, name="Inicio_sesion"),
     #path('logged_out/', views.logged_out, name="Cierre_sesion"),
     #path('registro/', views.registro, name="Registro"),
     
@@ -44,8 +47,7 @@ urlpatterns = [
     path('registro_correcto/',views.registro_correcto),
     path('registro_error/',views.registro_error),
     path('profile/', ProfileUpdate.as_view(),name='profile'),
-    #Login
-    #Logout
+
     
     
     

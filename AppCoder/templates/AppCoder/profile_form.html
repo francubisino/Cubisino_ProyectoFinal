@@ -24,6 +24,9 @@
               <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
               {{ form.bio }}
               {{ form.link }}
+              <br><br>
+              <p>Si quieres cambiar tu contraseña haz click <a href="{% url 'cambiar_password' %}">aquí</a></p>
+
               <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
             </div>
           </div>
