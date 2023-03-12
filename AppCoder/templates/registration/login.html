@@ -3,7 +3,8 @@
 {% block contenidoQueCambia %}
 
     <!--Aqui se va a colocar lo que se cambia. Y está asociado a esta vista-->
-    <h1>Iniciar sesion</h1>
+    <br><br>
+    <h1 align="center">Iniciar sesion</h1>
      <br>
 {% block content %}
 
@@ -19,7 +20,7 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
+<div align="center">
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 
@@ -27,19 +28,19 @@
   <td>{{ form.username.label_tag }}</td>
   <td>{{ form.username }}</td>
 </div>
+<br>
 <div>
   <td>{{ form.password.label_tag }}</td>
   <td>{{ form.password }}</td>
 </div>
-
+<br>
 <div>
-  <input type="submit" value="login" />
+  <input type="submit"  class="btn btn-success btn-lg" value="Ingresar">
   <input type="hidden" name="next" value="{{ next }}" />
 </div>
 </form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+<br><br>
 
 {% endblock %}
 

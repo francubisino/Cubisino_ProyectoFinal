@@ -3,16 +3,19 @@
 {% block contenidoQueCambia %}
 
 
+
 {% if articulos %}  
-<br>
+
+<br><br>
 &nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Los alojamientos disponibles en base a las características seleccionadas son:</h4>
 <br>
  
 
+
     {% for articulo in articulos %}
-        
- 
-        <div align="center">
+
+
+            <div align="center">
         <h2>{{articulo.titulo}}</h2>
         </div>
         <br>
@@ -48,16 +51,33 @@
             <li><strong>Descripción:</strong>&nbsp;&nbsp;{{articulo.descripcion}}</li>
             </div>
         </ul>
-        </div>
+
         {% if user.is_authenticated %}
-        <div align="center">
+    
+    <div align="center" class="input-group" style="margin-left:420px;">
+        <div align="center" style="margin-right:10px;">
         <a href="{% url 'Reserva_confirmada' %}"><input type="submit"  class="btn btn-success btn-lg" value="Reservar"></a>
-    &nbsp;&nbsp;&nbsp;
+        </div>
+    
+        <div>
+           <form action="{% url 'comentarios' %}" method="GET">
+
+           <input type="hidden" name="titulo" style="height: 30px;"  value="{{articulo.titulo}}"required>
+       
+           <input type="submit"  class="btn btn-success btn-lg" value="Comentarios">
+
+           </form>
+        </div>
+    </div>
+    
+<br><br>
+
+        {% endif %}
         </div>
         
-        {% endif %}
         <br><br>
     {% endfor %}
+ 
   
     
 
@@ -68,6 +88,7 @@
 
     <br><br><br>
 {% endif %}
+
 
 
 {% endblock %}

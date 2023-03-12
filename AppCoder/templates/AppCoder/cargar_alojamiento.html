@@ -3,62 +3,97 @@
     {% block contenidoQueCambia %}
 
     <!-- Aqui va lo que cambia y lo asociado a la vista-->
-    
+    <br><br>
 <div style="position: relative; align-content: center; align-items: center;">
-    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Cargar alojamiento</h1>
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Cargá tu alojamiento</h1>
      <br>
-    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">¿Tenés dudas o recomendaciones? Envianos tu consulta y te respondemos a la brevedad</h4>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif"></h4>
   
-    <div   align="center" width="1000px" height="700px">
+    <div align="center" width="1000px" height="700px">
     
     <br>
     <form action="" enctype="multipart/form-data" method="POST"> 
+    
         {% csrf_token %} 
     
         <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
-        <table  style="font-family:Arial, Helvetica, sans-serif; font-size: 16px;">
-           
-        <label for='ubicacion'> Ubicacion </label>
-        <input type='text' name='ubicacion' id='ubicacion'> <br><br>
+        <br>
+    
+        <div class="input-group" style="margin-left:380px;">
+ 
+        <p for='ubicacion'> Ubicacion </p> &nbsp;&nbsp;&nbsp;  <input style="height: 30px;" type='text' name='ubicacion' id='ubicacion'> <br><br>
+        </div>    
+        <br>
+                <div class="input-group" style="margin-left:380px;">
 
-        <label> Precio por dia </label>
-        <input type='number' name='precio_dia' id='precio_dia'> <br><br>
+        <p>Precio por dia </p>  &nbsp;&nbsp;&nbsp;      <input style="height: 30px;" type='number' name='precio_dia' id='precio_dia'> <br><br>
+        </div>
+        <br>
+                <div class="input-group" style="margin-left:380px;">
+
+        <p for='habitaciones'>Habitaciones  </p>  &nbsp;&nbsp;&nbsp;      <input style="height: 30px;" type='number' name='habitaciones' id='habitaciones'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p>Tipo:</p>&nbsp;&nbsp;&nbsp;<input style="height: 30px;" type='text' name='tipo' id='tipo'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p>Baños:  </p>&nbsp;&nbsp;&nbsp;        <input style="height: 30px;" type='number' name='baños' id='baños'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Balcón:  </p> &nbsp;&nbsp;&nbsp;       <input style="height: 30px;" type='checkbox' name='balcon' id='balcon'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p>Pileta:  </p>  &nbsp;&nbsp;&nbsp;      <input style="height: 30px;" type='checkbox' name='pileta' id='pileta'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Mascotas:  </p>&nbsp;&nbsp;&nbsp;
+        <input type='checkbox' name='mascotas' id='mascotas'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Cantidad huéspedes:  </p>&nbsp;&nbsp;&nbsp;
+        <input style="height: 30px;" type='number' name='max_personas' id='max_personas'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Descripcion:  </p>&nbsp;&nbsp;&nbsp;
+        <input style="height: 30px;" type='text' name='descripcion' id='descripcion'>
+        </div>
+        <br>
+                 <div class="input-group" style="margin-left:380px;">
+
+        <p >Propietario:  </p>&nbsp;&nbsp;&nbsp;
+        <input style="height: 30px;" type='text' name='propietario' id='propietario' value="{{user.username}}" readonly>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Título:  </p>&nbsp;&nbsp;&nbsp;
+        <input style="height: 30px;" type='text' name='titulo' id='titulo'>
+        </div>
+        <br>
+        <div class="input-group" style="margin-left:380px;">
+
+        <p >Imagen:  </p>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type='file' name='img_alojamiento' id='img_alojamiento'>
+        </div>
+        <br>
+
+           
+       </div>
         
-        <label for='habitaciones'>habitaciones  </label>
-        <input type='number' name='habitaciones' id='habitaciones'><br><br>
-
-        <label>tipo:  </label>
-        <input type='text' name='tipo' id='tipo'><br><br>
-
-        <label>baños:  </label>
-        <input type='number' name='baños' id='baños'><br><br>
-
-        <label >balcon:  </label>
-        <input type='checkbox' name='balcon' id='balcon'><br><br>
-
-        <label>pileta:  </label>
-        <input type='checkbox' name='pileta' id='pileta'><br><br>
-
-        <label >mascotas:  </label>
-        <input type='checkbox' name='mascotas' id='mascotas'><br><br>
-
-        <label >max personas:  </label>
-        <input type='number' name='max_personas' id='max_personas'><br><br>
-
-        <label >descripcion:  </label>
-        <input type='text' name='descripcion' id='descripcion'><br><br>
-         
-        <label >Usuario propietario:  </label>
-        <input type='text' name='propietario' id='propietario'><br><br>
-
-        <label >titulo:  </label>
-        <input type='text' name='titulo' id='titulo'><br><br>
-
-        <label >imagen:  </label>
-        <input type='file' name='img_alojamiento' id='img_alojamiento'><br><br>
-
-           
-        </table>
         <br><br>
         <div class="container">
         

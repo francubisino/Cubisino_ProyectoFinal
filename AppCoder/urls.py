@@ -9,54 +9,35 @@ urlpatterns = [
     path('', views.inicio, name="Inicio"),
     path('alojamientos/',views.alojamientos, name="Alojamientos"),
     path('autos/', views.autos, name="Autos"),
-    path('mis_alojamientos/', views.mis_alojamientos, name="Mis_alojamientos"),
     path('paquetes/', views.paquetes, name="Paquetes"),
+    path('mis_alojamientos/', views.mis_alojamientos, name="Mis_alojamientos"),
     path('consultas/', views.consultas, name="Consultas"),
     path('inicio/', views.suscripcion, name="Suscripciones"),
     path('sobre_mi/', views.sobre_mi, name="Sobre_mi"),
-    path('inicio_logueado/', views.inicio_logueado, name="Inicio_logueado"),
-    path('prueba/', views.pruebas, name="Pruebas"),
+ 
+    #Paths funcionalidades
     path('cargar_alojamiento/', views.cargar_alojamiento, name="Cargar_alojamiento"),
     path('buscar_mis_alojamientos/', views.buscar_mis_alojamientos, name="Buscar_mis_alojamientos"),
     path('rdo_busqueda_mis_alojamientos/<titulo>/',views.borrarAlojamiento, name='Borrar_alojamiento'),
+    path('editar_alojamiento/<int:pk>',views.editar_alojamiento, name='Editar_alojamiento'),
     path('inicio',views.borrarAlojamiento, name='Borrar_alojamiento'),
-    #path('change_password/', MyPasswordChangeView.as_view(), name='password-change-view'),
-    #path('change_password_done/', MyPasswordResetDoneView.as_view(), name='password-change-done'),
-    path('cambio_password/', CambioPassword.as_view(), name='cambiar_password'),
-    path('cambio_pw_correcto/' , views.password_exitoso, name='password_exitoso'),
-    #path('change_password/', MyPasswordChangeView.as_view(), name='password-change-view'),
-    #path('borrar_alojamiento/', views.borrarAlojamiento, name="Borrar_alojamiento"),
-    #path('rdo_busqueda_mis_alojamientos/<titulo>/',views.borrarAlojamiento, name='Borrar_alojamiento'),
-    
-    
-    
-    
-    #path('carga_alojamiento_correcta/', views.carga_alojamiento_correcta),
-    #path(r'^upload$', 'upload_image_view', name='upload_image_view'),
-    #path('logged_out/', views.logged_out, name="Cierre_sesion"),
-    #path('registro/', views.registro, name="Registro"),
-    
-    #Paths de busquedas
     path('alojamientos/buscar_alojamiento/',views.buscar_alojamiento),
     path('autos/buscar_auto/',views.buscar_auto),
-    path('paquetes/buscar_paquete/',views.buscar_paquete),
     path('mis_alojamientos/buscar_mis_alojamientos/', views.buscar_mis_alojamientos),
+     path('reserva_confirmada/',views.reserva_confirmada, name='Reserva_confirmada'),
+
+    #Paths de comentarios
+    path('comentarios/',views.ver_comentarios, name='comentarios'),
+    path('agregar_comentario/comentarios/',views.agregar_comentario, name='agregar_comentario'),
 
     #Paths usuarios
     path('registro/',views.registro, name='Registro'),
     path('registro_correcto/',views.registro_correcto),
     path('registro_error/',views.registro_error),
     path('profile/', ProfileUpdate.as_view(),name='profile'),
-
-    
-    
-    
+    path('cambio_password/', CambioPassword.as_view(), name='cambiar_password'),
+    path('cambio_pw_correcto/' , views.password_exitoso, name='password_exitoso'),
     path('suscripcion/',views.suscripcion,name='Suscripcion'),
-    path('reserva_confirmada/',views.reserva_confirmada, name='Reserva_confirmada'),
     
 
-    #path('buscar_alojamiento/', views.buscar_alojamiento, name="Alojamientos"),
-    #path('',views.busqueda_alojamientos, name="busqueda_alojamientos"),
-    
-    #path('rdo_busqueda_alojamientos/',views.rdo_busqueda_alojamientos,name='rdo_busqueda_alojamientos'),
 ]

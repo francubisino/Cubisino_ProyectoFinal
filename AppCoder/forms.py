@@ -38,10 +38,6 @@ class CargarAlojamientoFormulario(forms.Form):
     titulo=forms.CharField(max_length=100)
     img_alojamiento=forms.ImageField()
    
-class PruebasFormulario(forms.Form):
-    ubicacion=forms.CharField(max_length=30)
-    img_alojamiento=forms.ImageField()
-    
 class SuscripcionFormulario(forms.Form):
     email=forms.EmailField()    
     
@@ -57,26 +53,10 @@ class AlojamientosFormulario(forms.Form):
     max_personas=forms.IntegerField()
     descripcion=forms.CharField(max_length=200)
 
-
     
 class InicioFormulario(forms.Form):
     pais_origen=forms.CharField()
-    
-class PaquetesFormulario(forms.Form):
-    paq_ubicacion=forms.CharField(max_length=30)
-    paq_precio_aloja_dia=forms.IntegerField()
-    paq_habitaciones=forms.IntegerField()
-    paq_baños=forms.IntegerField()
-    paq_balcon=forms.BooleanField()
-    paq_pileta=forms.BooleanField()
-    paq_mascotas=forms.BooleanField()
-    paq_max_personas=forms.IntegerField()
-    paq_interesa=forms.BooleanField()
-    paq_marca=forms.CharField(max_length=30)
-    paq_modelo=forms.CharField(max_length=40)
-    paq_precio_auto_dia=forms.IntegerField()
-    paq_seguro=forms.BooleanField()
-    
+        
 class RegistrarUsuario(forms.Form):
     nombre = forms.CharField(label='Nombre:',max_length=15,
                                     widget=forms.TextInput(
@@ -151,3 +131,9 @@ class FormularioCambioPassword(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+class ComentarioFormulario(forms.Form):
+    autor=forms.CharField()
+    mensaje=forms.CharField()
+    fecha_comentario=forms.CharField()
+    titulo_alojamiento=forms.CharField()

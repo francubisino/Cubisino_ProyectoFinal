@@ -1,0 +1,40 @@
+    {% extends "AppCoder/padre.html" %}
+    {% load static %}
+    {% block contenidoQueCambia %}
+
+ 
+    <!-- Aqui va lo que cambia y lo asociado a la vista-->
+    <br><br>
+<div style="position: relative; align-content: center; align-items: center;">
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Editá tu alojamiento</h1>
+     <br>
+    <h4 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif"></h4>
+  
+    <div align="center" width="1000px" height="700px">
+
+    <br>
+  
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %} 
+    
+        <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
+        <table  style="font-family:Arial, Helvetica, sans-serif; font-size: 16px;">
+            <br><br>
+            {{ form }}
+           
+           
+        </table>
+        <br><br>
+        <input type="submit"  class="btn btn-success btn-lg" value="Enviar consulta">
+        <br><br>
+        </div>
+        <br>
+        <br><br>
+
+        
+    </form>
+</div>
+    <br>
+    <br>
+
+
+{% endblock %}

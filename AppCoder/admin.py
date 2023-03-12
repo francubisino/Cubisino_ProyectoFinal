@@ -5,8 +5,11 @@ from .models import *
 
 admin.site.register(Alojamientos)
 admin.site.register(Autos)
-admin.site.register(Paquetes)
 admin.site.register(Consultas)
+admin.site.register(usuarios)
+admin.site.register(Suscripciones)
+admin.site.register(Profile)
+admin.site.register(Comentario)
 
 #class AlojamientoAdmin(admin.ModelAdmin):
 #    readonly_fields = ('id',)

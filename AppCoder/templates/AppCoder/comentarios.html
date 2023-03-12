@@ -1,0 +1,104 @@
+    {% extends "AppCoder/padre.html" %}
+    {% load static %}
+
+{% block contenidoQueCambia %}
+<br><br>
+{% if comentarios %}
+
+
+
+    <div style="position: relative; align-content: center; align-items: center;">
+    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Comentarios</h1>
+     <br>
+
+{% for comentario in comentarios|slice:":1" %}
+&nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Estos son los comentarios realizados en la publicación de: <strong><i>{{comentario.titulo_alojamiento}}</i></strong></h4> 
+{% endfor %}
+    <div   align="center" width="1000px" height="700px">
+    
+    <br>
+    
+    
+    <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
+    <br>
+    <br>
+    <!--autor/mensaje/fechaComentario/titulo_alojamiento-->    
+
+
+<div align="left">
+  
+  
+  
+
+     {% for comentario in comentarios %}
+     
+    <div> 
+    <p style="font-size:25px; font-family:Georgia, 'Times New Roman', Times, serif"><strong>{{comentario.autor}}</strong> comentó el <i>{{comentario.fechaComentario}}</i>:</p>
+    </div>
+
+    <div>
+    <p style="font-size:20px; font-family:Georgia, 'Times New Roman', Times, serif">{{comentario.mensaje}}</p>
+    </div>
+    <br><br>
+
+{% endfor %}
+
+</div>
+
+<!--AGREGAR COMENTARIO-->
+
+        {% for comentario in comentarios|slice:":1" %}
+        
+      
+        <div style="position: relative; align-content: center; align-items: center;">
+    <h2 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif">Dejá tu comentario</h2>
+    </div>
+ <div   align="center" width="1000px" height="700px">
+    
+    <br>
+    <form action="{% url 'agregar_comentario' %}" method="POST"> {% csrf_token %} 
+    
+        <div class="container" style="background-color: rgba(255, 255, 255,0.6); border-radius: 2%;">
+        <br><br>
+
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Autor:</p>&nbsp;&nbsp;&nbsp;<input type="text" name="autor" style="height: 30px;" value="{{user.username}}" readonly>
+        </div>
+        <br>
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Fecha comentario:</p>&nbsp;&nbsp;&nbsp;<input type="text" name="fecha_comentario" style="height: 30px;" value="{% now 'SHORT_DATE_FORMAT' %}" readonly>
+        </div>
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Titulo alojamiento:</p>&nbsp;&nbsp;&nbsp;<input type="text" name="titulo_alojamiento" style="height: 30px;" value="{{comentario.titulo_alojamiento}}" readonly>
+        </div>
+        <div  class="input-group" style="margin-left:250px;">
+        <p>Mensaje:</p>&nbsp;&nbsp;&nbsp;<input type="text" name="mensaje" style="height: 280px; width: 500px;">
+        </div>
+        <br>
+        <br>
+              <br>
+                  <div>
+
+              <!--  <button type="submit"  class="btn btn-success btn-lg">Agregar comentario</button>-->
+                <input type="submit"  class="btn btn-success btn-lg" value="Enviar comentario">
+       
+            </div>
+           <br><br>
+      
+    </form>
+      
+      {% endfor %}  
+     
+
+</div>
+
+    </div>
+    <br>
+    <br>
+         
+    </div>
+    </div>
+   <br><br><br>
+{% endif %}
+
+{% endblock %}

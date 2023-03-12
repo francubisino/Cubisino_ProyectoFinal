@@ -4,8 +4,8 @@
 
 
 {% if articulos %}  
-<br>
-&nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Los alojamientos disponibles en base a las características seleccionadas son:</h4>
+<br><br>
+&nbsp;&nbsp;<h4 style="font-family:Arial, Helvetica, sans-serif;  margin-left:20px;">Los alojamientos que cargaste son los siguientes:</h4>
 <br>
  
 
@@ -51,8 +51,7 @@
         </div>
         {% if user.is_authenticated %}
         <div align="center">
-        <a href="{% url 'Reserva_confirmada' %}"><input type="submit"  class="btn btn-success btn-lg" value="Reservar"></a>  <!--este lo tengo que borrar-->
-        <a href="#"><input type="submit"  class="btn btn-success btn-lg" value="Editar"></a>
+        <a href="{% url 'Editar_alojamiento' articulo.id %}"><input type="submit"  class="btn btn-success btn-lg" value="Editar"></a>
         <a href="{% url 'Borrar_alojamiento' articulo.titulo %}"><input type="submit"  class="btn btn-success btn-lg" value="Borrar"></a>
         
 
