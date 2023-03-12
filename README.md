@@ -1,5 +1,7 @@
 # Cubisino - Entrega Final Curso Python CoderHouse
 
+**Link google Drive con video explicativo de la Aplicación**
+https://drive.google.com/drive/folders/1_4yfizUIW-chFndqaQ531DPOcIAe3cxA?usp=sharing
 
 **#Página "Inicio":**
 Podemos ver cards donde se explican los servicios que brinda Bote, y abajo hay un formulario de suscripción
